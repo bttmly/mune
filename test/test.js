@@ -81,6 +81,11 @@ describe("enum from array", function () {
     }).to.throw();
   });
 
+  it("reports as non-extensible", function () {
+    expect(Object.isExtensible(e)).to.equal(false);
+  });
+
+
 });
 
 describe("enum from object", function () {
@@ -137,6 +142,10 @@ describe("enum from object", function () {
     expect(function () {
       delete e.GSW;
     }).to.throw();
+  });
+
+  it("reports as non-extensible", function () {
+    expect(Object.isExtensible(e)).to.equal(false);
   });
 
 });
