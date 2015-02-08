@@ -1,12 +1,13 @@
 {
-  "name": "harmony-enum",
-  "version": "1.0.0",
+  "name": "mune",
+  "version": "0.1.0",
   "description": "Enums via ES6 proxies",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "lint": "jslint **/*.js",
     "test": "mocha -R spec --harmony-proxies ./test"
   },
   "keywords": [
@@ -18,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^1.10.0",
+    "jshint": "^2.6.0",
     "mocha": "^2.1.0"
   },
   "dependencies": {
