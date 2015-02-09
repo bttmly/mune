@@ -1,4 +1,4 @@
-# mune
+# mune [![Build Status](https://travis-ci.org/nickb1080/mune.svg?branch=master)](https://travis-ci.org/nickb1080/mune)
 (it's just 'enum' backwards)
 
 ## Installation
