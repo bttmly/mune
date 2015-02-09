@@ -2,37 +2,29 @@ var expect = require("chai").expect;
 
 var Enum = require("..");
 
-function catchError (fn) {
-  try {
-    fn();
-  } catch (e) {
-    return e;
-  }
-}
-
 describe("bad call", function () {
   it("throws when passed a string", function () {
     expect(function () {
       Enum("string");
-    }).to.throw(/Enum must be initialized with an object-like value/)
+    }).to.throw(/Enum must be initialized with an object-like value/);
   });
 
   it("throws when passed a number", function () {
     expect(function () {
       Enum(123);
-    }).to.throw(/Enum must be initialized with an object-like value/)
+    }).to.throw(/Enum must be initialized with an object-like value/);
   });
 
   it("throws when passed a boolean", function () {
     expect(function () {
       Enum(false);
-    }).to.throw(/Enum must be initialized with an object-like value/)
+    }).to.throw(/Enum must be initialized with an object-like value/);
   });
 
   it("throws when passed a symbol", function () {
     expect(function () {
       Enum(Symbol("s"));
-    }).to.throw(/Enum must be initialized with an object-like value/)
+    }).to.throw(/Enum must be initialized with an object-like value/);
   });
 
 });
@@ -98,7 +90,6 @@ describe("enum from array", function () {
   it("reports as non-extensible", function () {
     expect(Object.isExtensible(e)).to.equal(false);
   });
-
 
 });
 
