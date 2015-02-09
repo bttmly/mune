@@ -2,29 +2,37 @@ var expect = require("chai").expect;
 
 var Enum = require("..");
 
+function catchError (fn) {
+  try {
+    fn();
+  } catch (e) {
+    return e;
+  }
+}
+
 describe("bad call", function () {
   it("throws when passed a string", function () {
     expect(function () {
       Enum("string");
-    }).to.throw(TypeError);
+    }).to.throw(/Enum must be initialized with an object-like value/)
   });
 
   it("throws when passed a number", function () {
     expect(function () {
       Enum(123);
-    }).to.throw(TypeError);
+    }).to.throw(/Enum must be initialized with an object-like value/)
   });
 
   it("throws when passed a boolean", function () {
     expect(function () {
       Enum(false);
-    }).to.throw(TypeError);
+    }).to.throw(/Enum must be initialized with an object-like value/)
   });
 
   it("throws when passed a symbol", function () {
     expect(function () {
       Enum(Symbol("s"));
-    }).to.throw(TypeError);
+    }).to.throw(/Enum must be initialized with an object-like value/)
   });
 
 });
@@ -39,7 +47,13 @@ describe("enum from array", function () {
   it("mandates that each member of the array is a primitive value", function () {
     expect(function () {
       Enum([{}])
-    }).to.throw();
+    }).to.throw(/Enum only accepts primitives/);
+  });
+
+  it("throws when trying to initialize an enum with an array with a repeated value", function () {
+    expect(function () {
+      Enum(["a", "b", "c", "b"]);
+    }).to.throw(/Attempted to add b to enum more than once/)
   });
 
   it("creates an enum with each of the array's members", function () {
@@ -58,13 +72,13 @@ describe("enum from array", function () {
   it("throws on property access when value isn't in enum", function () {
     expect(function () {
       e.NotASuit;
-    }).to.throw();
+    }).to.throw(/Enum does not contain NotASuit/);
   });
 
   it("throws when attempting to set a property", function () {
     expect(function () {
       e.Circles = "Circles";
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("throws when attempting to define a property", function () {
@@ -72,13 +86,13 @@ describe("enum from array", function () {
       Object.defineProperty(e, "Circles", {
         value: "Circles"
       });
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("throws when attempting to delete a property", function () {
     expect(function () {
       delete e.Spades;
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("reports as non-extensible", function () {
@@ -109,7 +123,7 @@ describe("enum from object", function () {
   it("mandates that each property of the object is a primitive value", function () {
     expect(function () {
       Enum({obj: {}})
-    }).to.throw();
+    }).to.throw(/Enum only accepts primitives/);
   });
 
   it("creates an enum with each of the array's members", function () {
@@ -128,13 +142,13 @@ describe("enum from object", function () {
   it("throws on property access when value isn't in enum", function () {
     expect(function () {
       e.MIA;
-    }).to.throw();
+    }).to.throw(/Enum does not contain MIA/);
   });
 
   it("throws when attempting to set a property", function () {
     expect(function () {
       e.MIA = "Miami Heat";
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("throws when attempting to define a property", function () {
@@ -142,13 +156,13 @@ describe("enum from object", function () {
       Object.defineProperty(e, "MIA", {
         value: "Miami Heat"
       });
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("throws when attempting to delete a property", function () {
     expect(function () {
       delete e.GSW;
-    }).to.throw();
+    }).to.throw(/Enums are immutable once created/);
   });
 
   it("reports as non-extensible", function () {
