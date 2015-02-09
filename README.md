@@ -8,6 +8,7 @@
 ```js
 var Enum = require("mune");
 
+// can create from an array
 var DYNAMIC_LANGS = Enum(["JavaScript", "Python", "Ruby"]);
 
 DYNAMIC_LANGS.JavaScript // => "JavaScript"
@@ -19,6 +20,19 @@ DYNAMIC_LANGS.Ruby = "Ruby!!!" // => throws error
 Object.defineProperty(DYNAMIC_LANGS, "PHP", {
   value: "PHP"
 }) // => throws error
+
+// can also create from an object
+var TIMES = Enum({
+  second: 1000,
+  minute: 60 * 1000,
+  hour: 60 * 60 * 1000,
+  day: 24 * 60 * 60 * 1000,
+  week: 7 * 60 * 60 * 1000 * 24
+})
+
+TIMES.second // 1000
+TIMES.minute // 60000
+
 ```
 
 ## Why?
@@ -33,4 +47,4 @@ ES6 [proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/
 Besides being able to throw when accessing an undefined property, this is better than just a [frozen](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) object, because messing with frozen objects just fails silently unless you're in strict mode.
 
 ## Caveats
-Well, one, you need to have a Proxy implementation available. `harmony-reflect` is used here to patch old, non-compliant versions. Also, calling `JSON.stringify()` on an enum will fail becuase it tries to find a `.toJSON` method on the object.
+Well, one, you need to have a Proxy implementation available. `harmony-reflect` is used here to patch old, non-compliant versions. Also, calling `JSON.stringify()` on an enum will error out becuase it tries to find a `.toJSON` method on the object.
