@@ -22,20 +22,27 @@ Object.defineProperty(DYNAMIC_LANGS, "PHP", {
 }) // => throws error
 
 // can also create from an object
-var TIMES = Enum({
-  second: 1000,
-  minute: 60 * 1000,
-  hour: 60 * 60 * 1000,
-  day: 24 * 60 * 60 * 1000,
-  week: 7 * 60 * 60 * 1000 * 24
-})
+var EXTENSIONS = Enum({
+  ".js": "JavaScript",
+  ".rb": "Ruby",
+  ".py": "Python"
+});
 
-TIMES.second // 1000
-TIMES.minute // 60000
+EXTENSIONS[".js"] // => "JavaScript"
+
+delete EXTENSIONS.JavaScript // => throws error
+EXTENSIONS.Haskell // => throws error
+EXTENSIONS[".clj"] = "Clojure"; // => throws error
+EXTENSIONS[".rb"] = "Ruby!!!" // => throws error
+Object.defineProperty(EXTENSIONS, ".php", {
+  value: "PHP"
+}) // => throws error
 
 ```
 
 ## Why?
+Enums are a handy way to store and reference strings and numbers that have particular semantic meaning in an application.
+
 Most other enum implementations in JavaScript have one or both of the following issues:
 
 1. Too complicated. The values are wrapped in a strange way to make them `instanceof` their containing enum, or some other such nonsense. Alternately, there are a ton of superfluous methods addressing obscure use-cases that I never seem to run into.
