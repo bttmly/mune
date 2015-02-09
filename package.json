@@ -1,6 +1,6 @@
 {
   "name": "mune",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Enums via ES6 proxies",
   "main": "index.js",
   "directories": {
