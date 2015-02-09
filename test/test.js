@@ -99,6 +99,13 @@ describe("enum from object", function () {
     e = Enum(map);
   });
 
+  it("can create an enum from an existing enum", function () {
+    var ee = Enum(e);
+    Object.keys(ee).forEach(function (key) {
+      expect(ee[key]).to.equal(e[key]);
+    });
+  });
+
   it("mandates that each property of the object is a primitive value", function () {
     expect(function () {
       Enum({obj: {}})
