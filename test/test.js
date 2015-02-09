@@ -29,6 +29,12 @@ describe("bad call", function () {
 
 });
 
+describe("enum", function () {
+  it("has a null prototype", function () {
+    expect(Object.getPrototypeOf(Enum([1]))).to.equal(null);
+  });
+});
+
 describe("enum from array", function () {
   var arr, e;
   beforeEach(function () {

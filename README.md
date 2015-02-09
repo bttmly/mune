@@ -41,7 +41,7 @@ Object.defineProperty(EXTENSIONS, ".php", {
 ```
 
 ## Why?
-Enums are a handy way to store and reference strings and numbers that have particular semantic meaning in an application.
+Enums are a handy way to store and reference strings and numbers that have particular semantic meaning in an application. For example, see how [error messages are handled](https://github.com/nickb1080/mune/blob/master/lib/index.js#L65-L71) internally.
 
 Most other enum implementations in JavaScript have one or both of the following issues:
 
