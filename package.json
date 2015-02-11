@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "jslint **/*.js",
-    "test": "mocha -R spec --harmony-proxies ./test"
+    "test": "mocha --harmony --harmony-proxies -R spec ./test"
   },
   "keywords": [
     "enum",

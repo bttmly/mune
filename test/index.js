@@ -1,6 +1,6 @@
 var expect = require("chai").expect;
 
-var Enum = require("..");
+var Enum = require("../lib");
 
 describe("bad call", function () {
   it("throws when passed a string", function () {
@@ -21,11 +21,13 @@ describe("bad call", function () {
     }).to.throw(/Enum must be initialized with an object-like value/);
   });
 
-  it("throws when passed a symbol", function () {
-    expect(function () {
-      Enum(Symbol("s"));
-    }).to.throw(/Enum must be initialized with an object-like value/);
-  });
+  if (typeof Symbol !== "undefined") {
+    it("throws when passed a symbol", function () {
+      expect(function () {
+        Enum(Symbol("s"));
+      }).to.throw(/Enum must be initialized with an object-like value/);
+    });
+  }
 
 });
 
@@ -55,7 +57,7 @@ describe("enum from array", function () {
   });
 
   it("creates an enum with each of the array's members", function () {
-    expect(Object.keys(e)).to.deep.equal(arr);
+    expect(Object.keys(e).sort()).to.deep.equal(arr.sort());
     arr.forEach(function (member) {
       expect(e[member]).to.equal(member);
     });
