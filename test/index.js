@@ -1,27 +1,33 @@
 "use strict";
 
 var expect = require("chai").expect;
-
-var Enum;
-
-var P = global.Proxy;
+var rewire = require("rewire");
 
 describe("Proxies not supported", function () {
+
+  var P;
+
+  beforeEach(function () {
+    P = global.Proxy;
+    global.Proxy = undefined;
+    require.cache = {};
+  });
+
   it("throws", function () {
     expect(function () {
-      delete global.Proxy;
-      Enum = require("../lib");
+      rewire("../lib");
     }).to.throw(/Proxies are not supported in this environment/);
+  });
+
+  afterEach(function () {
+    global.Proxy = P;
+    require.cache = {};
   });
 });
 
 describe("Proxies supported", function () {
 
-  before(function () {
-    global.Proxy = P;
-    require.cache = {};
-    Enum = require("../lib");
-  });
+  var Enum = require("../lib");
 
   describe("bad call", function () {
     it("throws when passed a string", function () {

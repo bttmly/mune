@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "jslint **/*.js",
-    "test": "mocha --harmony --harmony-proxies -R spec ./test"
+    "test": "mocha --harmony --harmony-proxies -R spec ./test/index.js"
   },
   "keywords": [
     "enum",
@@ -20,7 +20,8 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "jshint": "^2.6.0",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "rewire": "^2.2.0"
   },
   "dependencies": {
     "harmony-reflect": "^1.1.1"
