@@ -14,7 +14,7 @@ var DYNAMIC_LANGS = Enum(["JavaScript", "Python", "Ruby"]);
 DYNAMIC_LANGS.JavaScript // => "JavaScript"
 
 delete DYNAMIC_LANGS.JavaScript // => throws error
-DYNAMIC_LANGS.Haskell // => throws error
+DYNAMIC_LANGS.Julia // => throws error
 DYNAMIC_LANGS.Clojure = "Clojure"; // => throws error
 DYNAMIC_LANGS.Ruby = "Ruby!!!" // => throws error
 Object.defineProperty(DYNAMIC_LANGS, "PHP", {
@@ -31,7 +31,7 @@ var EXTENSIONS = Enum({
 EXTENSIONS[".js"] // => "JavaScript"
 
 delete EXTENSIONS.JavaScript // => throws error
-EXTENSIONS.Haskell // => throws error
+EXTENSIONS.Julia // => throws error
 EXTENSIONS[".clj"] = "Clojure"; // => throws error
 EXTENSIONS[".rb"] = "Ruby!!!" // => throws error
 Object.defineProperty(EXTENSIONS, ".php", {
